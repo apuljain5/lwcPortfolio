@@ -1,3 +1,20 @@
+<!-- sldsValidatorIgnore -->
 <template>
-    
+    <div class="alarm-card">
+        <h1>Alarm Clock</h1>
+        <img src={clockImage} width="200px" height="200px" alt="Alarm clock"/>
+        <h2>{currentTime}</h2>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+            <span>hr</span>
+            </div>
+            <div class="slds-col">
+            <span>min</span>
+            </div>
+            <div class="slds-col">
+            <span>AM/PM</span>
+            </div>
+        </div>
+        <button class="slds-button slds-button_neutral slds-button_stretch">Stretched Neutral Button</button>
+    </div>
 </template>
