@@ -9,6 +9,7 @@ export default class MemoryGameLwc extends LightningElement {
     moves = 0;
     totalTime = "00:00";
     timeRef;
+    hasWon = false;
     cards = [
         {id:1, listClass:"card", type:"diamond", icon:"fa fa-diamond"},
         {id:2, listClass:"card", type:"plane", icon:"fa fa-paper-plane-o"},
@@ -68,6 +69,9 @@ export default class MemoryGameLwc extends LightningElement {
         this.openedCards = [];
         if(this.matchedCards.length === 16){
             window.clearInterval(this.timeRef);
+            setTimeout(() => {
+                this.hasWon = true;
+            }, 1000)
         }
     }
 
@@ -112,7 +116,7 @@ export default class MemoryGameLwc extends LightningElement {
         Array.from(elem).forEach(card => {
             card.classList.remove("show", "open", "match", "disabled");
         })
-
+        this.hasWon = false;
         
         let cardArr = [...this.cards];
         
