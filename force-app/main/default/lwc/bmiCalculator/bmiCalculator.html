@@ -1,3 +1,4 @@
+<!-- sldsValidatorIgnore -->
 <template>
     <div class="app slds-var-p-around_medium">
         <div class="box">
@@ -13,21 +14,48 @@
             </template>
             <template if:false={bmiResult}>
                 <form action="" onsubmit={handleSubmit}>
-                    <div class="slds-form-element slds-var-m-bottom_medium">
-                        <label class="slds-form-element__label" for="text-input-id-height">
-                        Height (cm)</label>
-                        <div class="slds-form-element__control">
-                        <input type="number" min="0" id="text-input-id-height" placeholder="Enter your Height in cm." required="" class="slds-input" name="height" value={height} onchange={handleOnchange} />
+                    <div class="slds-form-element slds-grid slds-var-m-bottom_medium slds-grid_align-center">
+                        <label class="slds-form-element__label slds-col slds-size_1-of-5" for="text-input-id-height">
+                        Height</label>
+                            <div class="slds-form-element__control slds-col slds-size_2-of-5">
+                                <div class="slds-select_container">
+                                    <select class="slds-select" id="text-input-id-height" onchange={handleHeightUnitChange}>
+                                        <option value="cm">Centimeter(cm)</option>
+                                        <option value="m">Meter(m)</option>
+                                        <option value="ft">Feet(ft + in)</option>
+                                        <option value="in">Inch(in)</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="slds-form-element slds-var-m-bottom_medium">
-                        <label class="slds-form-element__label" for="text-input-id-weight">
-                        Weight (kg)</label>
-                        <div class="slds-form-element__control">
-                        <input type="number" min="0" id="text-input-id-weight" placeholder="Enter your weight in kg." required="" class="slds-input" name="weight" value={weight} onchange={handleOnchange}/>
+                       
+                        <div class="slds-form-element__control slds-grid" lwc:if={isHeightUnitFeet}>
+                            <input type="number" min="0" placeholder="Enter your Height(ft)" required="" class="slds-input slds-size_1-of-2" name="heightFeet" value={heightFeet} onchange={handleOnchange} />
+                            <input type="number" min="0" placeholder="Enter your Height(in)" required="" class="slds-input slds-size_1-of-2" name="heightInch" value={heightInch} onchange={handleOnchange} />
                         </div>
-                    </div>
-                    <button class="slds-button slds-button_neutral slds-button_stretch slds-var-m-bottom_large button-input">Calculate</button>
+                        <div class="slds-form-element__control" lwc:else>
+                            <input type="number" min="0" placeholder="Enter your Height" step="0.01" required="" class="slds-input" name="height" value={height} onchange={handleOnchange} />
+                            </div>
+                    
+                    <div class="slds-form-element slds-grid slds-var-m-bottom_medium slds-var-m-top_medium slds-grid_align-center">
+                        <label class="slds-form-element__label slds-col slds-size_1-of-5" for="text-input-id-weight">
+                        Weight</label>
+                            <div class="slds-form-element__control slds-col slds-size_2-of-5">
+                                <div class="slds-select_container">
+                                    <select class="slds-select" id="text-input-id-weight" onchange={handleWeightUnitChange}>
+                                        <option value="kg">Kilogram(kg)</option>
+                                        <option value="g">Gram(g)</option>
+                                        <option value="lbs">Pound(lbs)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-form-element__control">
+                        <input type="number" min="0" placeholder="Enter Your Weight" step="0.01" required="" class="slds-input" name="weight" value={weight} onchange={handleOnchange}/>
+                        </div>
+                    
+                    <button class="slds-button slds-button_neutral slds-button_stretch slds-var-m-bottom_large slds-var-m-top_large button-input">Calculate</button>
                 </form>
             </template>
             <div class="info-wrapper">
