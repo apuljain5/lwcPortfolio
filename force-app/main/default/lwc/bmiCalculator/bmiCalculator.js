@@ -10,7 +10,6 @@ export default class BmiCalculator extends LightningElement {
     weightUnit = 'kg';
     heightUnit = 'cm';
 
-
     get isHeightUnitFeet(){
         return this.heightUnit === 'ft';
     }
